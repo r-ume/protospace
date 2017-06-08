@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170608073858) do
     t.integer "user_id"
     t.text "catchcopy"
     t.text "concept"
-    t.integer "like_count", default: 0
+    t.integer "likes_count", default: 0
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
