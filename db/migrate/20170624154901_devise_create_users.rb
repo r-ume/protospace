@@ -23,9 +23,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
        #Columns I add for protospace
       t.string :name,               null: false, default: ""
       t.text   :profile       
-      t.string :position
+      t.string :position,           null: false, default: ""
       t.text   :occupation
-      t.string :avatar
+      t.string :avatar,             null: false, default: ""
 
       ## Confirmable
       # t.string   :confirmation_token
