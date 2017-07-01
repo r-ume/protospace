@@ -2,12 +2,15 @@
 %html
   %head
     %meta{content: "text/html; charset=US-ASCII", "http-equiv" => "Content-Type"}/
-    %title Protospace
+    %title Baymax-Protospace
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     = render "layouts/header"
+    - if notice
+      %p.layout-notice= notice
+    - if alert
+      %p.layout-alert= alert
     = yield
     = render "layouts/footer"
-    
