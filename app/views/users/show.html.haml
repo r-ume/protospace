@@ -32,10 +32,12 @@
             %a{href: ""}
               = image_tag("sample.png")
               .caption
-                %h3 Salvation Army on iPad App Wireframe
+                %h3 
+                  = prototype.catchcopy
                 .proto-meta
                   .proto-date
-                    Apr 26
+                    = prototype.posted_time
+
                 %ul.proto-tag-list.list-inline
                   %li
                     %a{href: "#", class: "btn btn-default"} iPad
