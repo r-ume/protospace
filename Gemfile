@@ -11,6 +11,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
+gem 'pry-rails'
 
 # TAG
 gem 'acts-as-taggable-on'
