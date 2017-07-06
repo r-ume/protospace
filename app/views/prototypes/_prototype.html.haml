@@ -1,0 +1,16 @@
+.col-sm-4.col-md-3.proto-content
+  .thumbnail
+    %a{href: ""}
+      = display_image_of_prototype(prototype)
+      .caption
+        %h3 
+          = prototype.catchcopy
+        .proto-meta
+          .proto-date
+            = prototype.posted_time
+
+        %ul.proto-tag-list.list-inline
+          %li
+            %a{href: "#", class: "btn btn-default"} iPad
+          %li
+            %a{href: "#", class: "btn btn-default"} wireframe

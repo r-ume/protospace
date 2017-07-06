@@ -11,6 +11,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
+gem 'pry-rails'
 
 # TAG
 gem 'acts-as-taggable-on'
@@ -28,8 +29,12 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jquery-rails'
 
-#devise
+#DEVISE
 gem 'devise'
+
+#PAGINATION
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
