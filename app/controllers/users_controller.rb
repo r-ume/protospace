@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update]
 
 	def show
-		@num_of_current_user_prototypes = @user.prototypes.length || 0
+		@num_of_current_user_prototypes = @user.prototypes.size || 0
 		@current_user_prototypes        = @user.prototypes.paginate(page: params[:page])
 	end
 
