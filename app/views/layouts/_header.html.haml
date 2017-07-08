@@ -19,6 +19,9 @@
                 = link_to user_path(current_user) do
                   My Page
               %li
+                = link_to edit_user_path(current_user) do
+                  Profile Edit
+              %li
                 = link_to destroy_user_session_path, method: :delete do
                   Logout
           %li
