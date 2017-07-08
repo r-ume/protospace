@@ -1,6 +1,6 @@
 class UserDecorator < ApplicationDecorator
-  delegate_all
+	delegate_all
 
-  decorates :user
-  decorates_association :prototype
+	decorates :user
+	decorates_association :prototype
 end
