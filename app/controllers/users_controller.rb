@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 	def show
 		@num_of_current_user_prototypes = @user.prototypes.size || 0
-		@current_user_prototypes        = @user.prototypes.paginate(page: params[:page])
+		@current_user_prototypes        = @user.prototypes.paginate(page: params[:page]).decorate
 	end
 
 	def edit
