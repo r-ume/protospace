@@ -11,8 +11,11 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		@user.update(user_params)
-		redirect_to :root
+		if @user.update(user_params)
+			redirect_to root_path, notice: "edited your account in successfully."
+		else
+			render :edit
+		end 
 	end
 
 	private
