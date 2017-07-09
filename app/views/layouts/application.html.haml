@@ -8,9 +8,6 @@
     = csrf_meta_tags
   %body
     = render "layouts/header"
-    - if notice
-      %p.layout-notice= notice
-    - if alert
-      %p.layout-alert= alert
+    = render "shared/flash_messages"
     = yield
     = render "layouts/footer"
