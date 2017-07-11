@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711043112) do
+ActiveRecord::Schema.define(version: 20170711043501) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text"
@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20170711043112) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "prototype_image", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "prototype_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "content"
     t.bigint "prototype_id"
-    t.index ["prototype_id"], name: "index_prototype_image_on_prototype_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prototype_id"], name: "index_prototype_images_on_prototype_id"
   end
 
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -90,5 +92,5 @@ ActiveRecord::Schema.define(version: 20170711043112) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "prototype_image", "prototypes"
+  add_foreign_key "prototype_images", "prototypes"
 end
