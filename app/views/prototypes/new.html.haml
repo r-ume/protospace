@@ -1,10 +1,7 @@
 .container.proto-new
   = form_for @prototype do |f|
     - if @prototype.errors.any?
-      %ul 
-        - @prototype.errors.full_messages.each do |msg|
-          %li 
-            = msg
+      = render partial: 'shared/error_message', collection: @prototype.errors.full_messages, as: :error_messages
 
     .col-md-8.col-md-offset-2
       %header.row.user-nav.row
