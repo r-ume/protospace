@@ -1,7 +1,7 @@
 // Making references in the code below
 //http://yamakadoh.net/weblog/?p=595
 
-$(document).on("ready page:load", function(){
+$(document).on("turbolinks:load", function(){
 
 	const mainImageId     = "#main-prototype-image";
 	const mainImageWidth  = 730;
