@@ -3,15 +3,15 @@
 
 $(document).on("turbolinks:load", function(){
 
-	const mainImageId     = "#main-prototype-image";
-	const mainImageWidth  = 730;
-	const mainImageHeight = 500;
+	const mainImageId      = "#main-prototype-image";
+	const mainImageWidth   = 730;
+	const mainImageHeight  = 500;
 
-	const subImageId1     = "#sub-prototype-image1";
-	const subImageId2     = "#sub-prototype-image2";
-	const subImageId3     = "#sub-prototype-image3";
-	const subImageWidth   = 213;
-	const subImageHeight  = 200; 
+	const firstSubImageId  = "#sub-prototype-image1";
+	const secondSubImageId = "#sub-prototype-image2";
+	const thirdSubImageId  = "#sub-prototype-image3";
+	const subImageWidth    = 213;
+	const subImageHeight   = 200; 
 
 	const reader          =  new FileReader();
 
@@ -39,7 +39,7 @@ $(document).on("turbolinks:load", function(){
 	}
 
 	previewImage(mainImageId);
-	previewImage(subImageId1);
-	previewImage(subImageId2);
-	previewImage(subImageId3);
+	previewImage(firstSubImageId);
+	previewImage(secondSubImageId);
+	previewImage(thirdSubImageId);
 });
