@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+  before_action :authenticate_user!, except: [:index] 
+
   def index
     @prototypes = Prototype.includes(:user).all
   end
@@ -9,7 +11,7 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.new(prototype_params)
+    @prototype = current_user.prototypes.new(prototype_params)
 
     if @prototype.save
       flash[:notice] = 'Prototype was successfully created.'
@@ -24,6 +26,5 @@ class PrototypesController < ApplicationController
   def prototype_params
     params.require(:prototype)
       .permit(:name, :catchcopy, :concept, prototype_images_attributes: [:id, :content, :status])
-      .merge(user_id: current_user.id)
   end
 end
