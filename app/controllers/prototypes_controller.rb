@@ -18,7 +18,7 @@ class PrototypesController < ApplicationController
       redirect_to root_path
     else
       flash[:alert] = 'Prototype was not successfully created.'
-      redirect_to new_prototype_path
+      render :new
     end
   end
 

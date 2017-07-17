@@ -1,3 +1,4 @@
-%ul 
-  %li 
-    = error_messages
+- if error_messages.present?
+  %ul 
+    %li 
+      = error_messages
