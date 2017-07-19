@@ -7,9 +7,8 @@ $(document).on("turbolinks:load", function(){
 	const mainImageWidth   = 730;
 	const mainImageHeight  = 500;
 
-	const firstSubImageId  = "#sub-prototype-image1";
-	const secondSubImageId = "#sub-prototype-image2";
-	const thirdSubImageId  = "#sub-prototype-image3";
+	const subImageIdNum    = $('.image-upload').data('id');
+	const subImageId       = "#sub-prototype-image" + subImageIdNum;
 	const subImageWidth    = 213;
 	const subImageHeight   = 200; 
 
@@ -39,7 +38,5 @@ $(document).on("turbolinks:load", function(){
 	}
 
 	previewImage(mainImageId);
-	previewImage(firstSubImageId);
-	previewImage(secondSubImageId);
-	previewImage(thirdSubImageId);
+	previewImage(subImageId);
 });
