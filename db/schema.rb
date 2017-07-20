@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624154901) do
+ActiveRecord::Schema.define(version: 20170716131235) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text"
@@ -27,15 +27,24 @@ ActiveRecord::Schema.define(version: 20170624154901) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "prototype_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "content"
+    t.bigint "prototype_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status"
+    t.index ["prototype_id"], name: "index_prototype_images_on_prototype_id"
+  end
+
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.integer "user_id"
     t.text "catchcopy"
     t.text "concept"
     t.integer "likes_count", default: 0
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_prototypes_on_user_id"
   end
 
   create_table "taggings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,5 +94,6 @@ ActiveRecord::Schema.define(version: 20170624154901) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "prototype_images", "prototypes"
+  add_foreign_key "prototypes", "users"
 end
-
