@@ -56,7 +56,7 @@ A webplatform where users can display prototypes of new technology, ideas, and e
 
 ##### Table Structure
   - user_id
-	- prototype_id
+  - prototype_id
 
 #### Comment
 ##### Association
