@@ -3,7 +3,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype,      only: [:show]
 
   def index
-    @prototypes = Prototype.includes(:user).all.paginate(page: params[:page]).decorate
+    @prototypes = Prototype.eager_load(:user, :prototype_images).all.paginate(page: params[:page]).decorate
   end
 
   def show
