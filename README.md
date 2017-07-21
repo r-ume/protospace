@@ -9,7 +9,7 @@ A webplatform where users can display prototypes of new technology, ideas, and e
 
 ### Installation
 	1. git clone git@github.com:r-ume/Protospace.git
-	2. bundle install`
+	2. bundle install
 	3. bundle exec rails s
 
 ### Tables and their Associations:
