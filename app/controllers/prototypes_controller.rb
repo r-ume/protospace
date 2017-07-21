@@ -1,8 +1,8 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, except: [:index] 
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @prototypes = Prototype.includes(:user).all
+    @prototypes = Prototype.includes(:user).all.paginate(page: params[:page]).decorate
   end
 
   def new

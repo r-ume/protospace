@@ -9,9 +9,9 @@ class PrototypeDecorator < ApplicationDecorator
 		object.created_at.strftime('%Y/%m/%d %H:%M:%S')
 	end
 
-	def display_image
+	def image
 		for image in object.prototype_images
-			if image[:status] == 'main'
+			if image[:status] == 'main' || 0
 				image_path = "#{Rails.root}/public/uploads/#{image.content}"
 			end
 		end
