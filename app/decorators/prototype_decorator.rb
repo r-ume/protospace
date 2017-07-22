@@ -3,22 +3,19 @@ class PrototypeDecorator < ApplicationDecorator
 
   decorates :prototype
   decorates_association :user
-  decorates_association :prototype_images
 
   def posted_time
     object.created_at.strftime('%Y/%m/%d %H:%M:%S')
   end
 
-  def main_image
+  def main_image_path
     main_images = object.prototype_images.select { |image| image[:status] == 'main' }
-    main_image_path = main_images.first.content.to_s
-
-    FileTest.exist?(main_image_path) ? h.image_tag(main_image_path) : h.image_tag('noimage-big.png')
+    main_image_path = main_images.first.content.to_s || 'noimage-big.png'
   end
 
-  def sub_images
+  def sub_images_paths
     sub_images = object.prototype_images.select { |image| image[:status] == 'sub' }
-    sub_images.map{ |image| image.content.to_s}
+    sub_images.map{ |image| image.content.to_s }
   end
 
   def likes
