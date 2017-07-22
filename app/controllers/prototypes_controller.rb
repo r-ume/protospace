@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_prototype,      only: [:show]
+  before_action :set_prototype,      only: [:show, :edit]
 
   def index
     @prototypes = Prototype.eager_load(:user, :prototype_images).all.paginate(page: params[:page]).decorate
@@ -25,6 +25,10 @@ class PrototypesController < ApplicationController
       flash[:alert] = 'Prototype was not successfully created.'
       render :new
     end
+  end
+
+  def edit
+
   end
 
   private
