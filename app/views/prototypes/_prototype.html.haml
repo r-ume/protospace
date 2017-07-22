@@ -1,7 +1,7 @@
 .col-sm-4.col-md-3.proto-content
   .thumbnail
     = link_to prototype_path(prototype) do
-      = prototype.main_image
+      = image_tag(prototype.main_image_path)
       .caption
         %h3 
           = prototype.catchcopy

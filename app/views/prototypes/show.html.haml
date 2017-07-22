@@ -22,11 +22,10 @@
         = @prototype.likes
   .row
     .col-md-9
-      .img-responsive
-        = @prototype.main_image
+      = image_tag(@prototype.main_image_path, class: 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
-        = render partial: 'prototypes/sub_image', collection: @prototype.sub_images, as: :sub_image_content        
+        = render partial: 'prototypes/sub_image', collection: @prototype.sub_images_paths, as: :sub_image_content
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
