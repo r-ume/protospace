@@ -1,13 +1,13 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_prototype,      only: [:show, :edit]
+  before_action :authenticate_user!, except: [:index, :show, :edit, :update]
+  before_action :set_prototype,      only:   [:edit, :update]
 
   def index
     @prototypes = Prototype.eager_load(:user, :prototype_images).all.paginate(page: params[:page]).decorate
   end
 
   def show
-
+    @prototype = Prototype.find(params[:id]).decorate
   end 
 
   def new
@@ -31,6 +31,16 @@ class PrototypesController < ApplicationController
 
   end
 
+  def update
+    if @prototype.update(prototype_params)
+      flash[:notice] = 'Prototype was successfully updated.'
+      redirect_to root_path
+    else
+      flash[:alert] = 'Prototype was not updated.'
+      render :edit
+    end
+  end
+
   private
   def prototype_params
     params.require(:prototype)
@@ -38,6 +48,6 @@ class PrototypesController < ApplicationController
   end
 
   def set_prototype
-    @prototype = Prototype.find(params[:id]).decorate
+    @prototype = Prototype.find(params[:id])
   end 
 end
