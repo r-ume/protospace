@@ -8,14 +8,17 @@ class PrototypeDecorator < ApplicationDecorator
     object.created_at.strftime('%Y/%m/%d %H:%M:%S')
   end
 
-  def main_image_path
-    main_images = object.prototype_images.select { |image| image[:status] == 'main' }
-    main_image_path = main_images.first.content.to_s || 'noimage-big.png'
+  def main_image
+    object.prototype_images.main.first.content
   end
 
-  def sub_images_paths
+  def sub_images
     sub_images = object.prototype_images.select { |image| image[:status] == 'sub' }
-    sub_images.map{ |image| image.content.to_s }
+    sub_images.map{ |image| image.content }
+  end
+
+  def num_of_sum_images
+    object.prototype_images.sub.size
   end
 
   def likes
