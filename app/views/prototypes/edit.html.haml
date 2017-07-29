@@ -11,23 +11,20 @@
       .row
         .col-md-12
           .cover-image-upload#main-prototype-image
-            = f.fields_for :prototype_images, @prototype.prototype_images.build do |image|
-              = image_tag @prototype.main_image_path, class: 'main-prototype-image'
-              = image.file_field :content, required: true
-              = image.hidden_field :status, value: :main
+            = f.fields_for :prototype_images, @prototype.prototype_images.main.first do |main_image|
+              = image_tag @prototype.prototype_images.main.first.content, class: 'main-prototype-image'
+              = main_image.file_field :content
+              = main_image.hidden_field :status, value: :main
 
-        .col-md-12
-          %ul.proto-sub-list.list-group
-            - 0.upto(@prototype.sub_images_paths.size) do |i|
-              %li.list-group-item.col-md-4
-                .image-upload{ id: "sub-prototype-image#{i+1}", data: { sub_image_id: "#{i+1}" } }
-                  = f.fields_for :prototype_images, @prototype.prototype_images.build do |image|
-                    - if @prototype.sub_images_paths[i]
-                      = image_tag @prototype.sub_images_paths[i], class: 'sub-prototype-image'
-                    - else
-                      = image_tag 'noimage.png', class: 'sub-prototype-image'
-                    = image.file_field :content
-                    = image.hidden_field :status, value: :sub
+        -# .col-md-12
+        -#   %ul.proto-sub-list.list-group
+        -#     - @prototype.prototype_images.sub.each do |sub_image|
+        -#       %li.list-group-item.col-md-4
+        -#         .image-upload{ id: "sub-prototype-image#{i+1}", data: { sub_image_id: "#{i+1}" } }
+        -#           = f.fields_for :prototype_images, sub_image do |sub_image|
+        -#             = image_tag sub_image, class: 'sub-prototype-image'
+        -#             = sub_image.file_field :content
+        -#             = sub_image.hidden_field :status, value: :sub
 
             %li.list-group-item.col-md-4
               .image-upload-plus
@@ -47,5 +44,6 @@
               %input{type: "text", placeholder: "UI"}/
             .col-md-3
               %input{type: "text", placeholder: "Application"}/
-      .row.text-center.proto-btn
-        = f.submit 'Update', class: 'btn btn-lg btn-primary btn-block'
+
+    .row.text-center.proto-btn
+      = f.submit 'Update', class: 'btn btn-lg btn-primary btn-block'
