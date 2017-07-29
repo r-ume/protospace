@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :edit, :update]
-  before_action :set_prototype,      only:   [:edit, :update]
+  before_action :set_prototype,      only:   [:edit, :update, :destroy]
 
   def index
     @prototypes = Prototype.eager_load(:user, :prototype_images).all.paginate(page: params[:page]).decorate
@@ -38,6 +38,15 @@ class PrototypesController < ApplicationController
     else
       flash[:alert] = 'Prototype was not updated.'
       render :edit
+    end
+  end
+
+  def destroy
+    if @prototype.user_id == current_user.id
+      @prototype.destroy
+      redirect_to root_path, notice: "Prototype was successfully updated"
+    else
+      render :index, alert: "You cannot destroy the prototype"
     end
   end
 
