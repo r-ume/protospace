@@ -1,13 +1,13 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :edit, :update]
-  before_action :set_prototype,      only:   [:edit, :update, :destroy]
+  before_action :set_prototype,      only:   [:show, :edit, :update, :destroy]
 
   def index
     @prototypes = Prototype.eager_load(:user, :prototype_images).all.paginate(page: params[:page]).decorate
   end
 
   def show
-    @prototype = Prototype.find(params[:id]).decorate
+  
   end 
 
   def new
@@ -57,6 +57,6 @@ class PrototypesController < ApplicationController
   end
 
   def set_prototype
-    @prototype = Prototype.find(params[:id])
+    @prototype = Prototype.find(params[:id]).decorate
   end
 end

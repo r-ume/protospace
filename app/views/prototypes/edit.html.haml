@@ -18,7 +18,7 @@
 
         .col-md-12
           %ul.proto-sub-list.list-group
-            - @prototype.prototype_images.sub.each_with_index do |sub_image, index|
+            - @prototype.sub_images.each_with_index do |sub_image, index|
               %li.list-group-item.col-md-4
                 .image-upload{ id: "sub-prototype-image#{index + 1}", data: { sub_image_id: "#{index + 1}" } }
                   = f.fields_for :prototype_images, sub_image do |image|

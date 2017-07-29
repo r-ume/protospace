@@ -13,12 +13,7 @@ class PrototypeDecorator < ApplicationDecorator
   end
 
   def sub_images
-    sub_images = object.prototype_images.select { |image| image[:status] == 'sub' }
-    sub_images.map{ |image| image.content }
-  end
-
-  def num_of_sum_images
-    object.prototype_images.sub.size
+    object.prototype_images.sub
   end
 
   def likes
