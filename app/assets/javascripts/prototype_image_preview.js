@@ -23,8 +23,7 @@ $(document).on("turbolinks:load", function(){
 			// get an image file
 			const file = $(this).prop('files')[0];
 
-			if(file.type.match('image.*')) {
-
+			if(file.type.match('image*')) {
 				reader.onload = function() {
 					let idNameImage = $(idName + ' img');
 

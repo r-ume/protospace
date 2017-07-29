@@ -16,15 +16,15 @@
               = main_image.file_field :content
               = main_image.hidden_field :status, value: :main
 
-        -# .col-md-12
-        -#   %ul.proto-sub-list.list-group
-        -#     - @prototype.prototype_images.sub.each do |sub_image|
-        -#       %li.list-group-item.col-md-4
-        -#         .image-upload{ id: "sub-prototype-image#{i+1}", data: { sub_image_id: "#{i+1}" } }
-        -#           = f.fields_for :prototype_images, sub_image do |sub_image|
-        -#             = image_tag sub_image, class: 'sub-prototype-image'
-        -#             = sub_image.file_field :content
-        -#             = sub_image.hidden_field :status, value: :sub
+        .col-md-12
+          %ul.proto-sub-list.list-group
+            - @prototype.prototype_images.sub.each_with_index do |sub_image, index|
+              %li.list-group-item.col-md-4
+                .image-upload{ id: "sub-prototype-image#{index + 1}", data: { sub_image_id: "#{index + 1}" } }
+                  = f.fields_for :prototype_images, sub_image do |image|
+                    = image_tag sub_image.content, class: 'sub-prototype-image' 
+                    = image.file_field :content
+                    = image.hidden_field :status, value: :sub
 
             %li.list-group-item.col-md-4
               .image-upload-plus

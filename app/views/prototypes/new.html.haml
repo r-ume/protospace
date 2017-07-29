@@ -20,7 +20,7 @@
           %ul.proto-sub-list.list-group
             - 2.times do |i|
               %li.list-group-item.col-md-4
-                .image-upload{ id: "sub-prototype-image#{i+1}", data: {id: "#{i+1}"}}
+                .image-upload{ id: "sub-prototype-image#{i+1}", data: {sub_image_id: "#{i+1}"}}
                   = f.fields_for :prototype_images do |image|
                     %img.image-preview-prototype
                     = image.file_field :content
@@ -46,3 +46,4 @@
               %input{type: "text", placeholder: "Application"}/
       .row.text-center.proto-btn
         = f.submit 'Publish', class: 'btn btn-lg btn-primary btn-block'
+      
