@@ -7,8 +7,8 @@ class PrototypesController < ApplicationController
   end
 
   def show
-  
-  end 
+
+  end
 
   def new
     @prototype = Prototype.new
@@ -42,7 +42,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    if @prototype.user_id == current_user.id
+    if @prototype.user == current_user
       @prototype.destroy
       redirect_to root_path, notice: "Prototype was successfully updated"
     else
