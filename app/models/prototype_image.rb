@@ -1,9 +1,17 @@
 class PrototypeImage < ApplicationRecord
-	belongs_to :prototype
 
-	enum status: %w(main sub)
+  # properties
+  # content, status
 
-	mount_uploader :content, PrototypeImageUploader
+  # association
+  belongs_to :prototype
 
-	validates :content, :status, presence: true
+  # enum
+  enum status: %w(main sub)
+
+  # carreierwave
+  mount_uploader :content, PrototypeImageUploader
+
+  # validation
+  validates :content, :status, presence: true
 end

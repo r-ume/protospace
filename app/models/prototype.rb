@@ -1,18 +1,20 @@
 class Prototype < ApplicationRecord
-	# validation
-	validates :name, :catchcopy, :concept, presence: true
+  # properties
+  # name, catchcopy, concept, likes_count
 
-	# pagination
- 	self.per_page = 8
+  # validation
+  validates :name, :catchcopy, :concept, presence: true
 
- 	# association
-	belongs_to :user
-	has_many :prototype_images, dependent: :destroy
+  # pagination
+  self.per_page = 8
 
-	accepts_nested_attributes_for :prototype_images, allow_destroy: true, reject_if: :rejected_images
+  # association
+  belongs_to :user
+  has_many :prototype_images, dependent: :destroy
 
-	def rejected_images(attributed)
-		attributed['content'].blank?
-	end
+  accepts_nested_attributes_for :prototype_images, allow_destroy: true, reject_if: :images_with_no_contents
 
+  def images_with_no_contents(attributed)
+    attributed['content'].blank?
+  end
 end

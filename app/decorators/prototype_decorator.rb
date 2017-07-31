@@ -1,16 +1,30 @@
 class PrototypeDecorator < ApplicationDecorator
-	delegate_all
+  delegate_all
 
-	decorates :prototype
-	decorates_association :user 
+  decorates :prototype
+  decorates_association :user
 
- 	def posted_time
-		object.created_at.strftime('%Y/%m/%d %H:%M:%S')
-	end
+  def posted_time
+    object.created_at.strftime('%Y/%m/%d %H:%M:%S')
+  end
 
-	def display_image_of_prototype
-		image_path = "#{Rails.root}/public/images/#{object.image}"
-		FileTest.exist?(image_path) ? h.image_tag(object.image) : h.image_tag('noimage-big.png')
-	end	
- 
+  def main_image
+    object.prototype_images.main.first.content
+  end
+
+  def sub_images
+    object.prototype_images.sub
+  end
+
+  def likes
+    object.likes_count
+  end	
+
+  def user_name
+    object.user.name
+  end 
+
+  def user_profile
+    object.user.profile
+  end
 end

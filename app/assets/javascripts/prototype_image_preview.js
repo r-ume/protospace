@@ -4,13 +4,17 @@
 $(document).on("turbolinks:load", function(){
 
 	const mainImageId      = "#main-prototype-image";
-	const mainImageWidth   = 730;
-	const mainImageHeight  = 500;
+	const mainImageWidth   = $(mainImageId).width();
+	const mainImageHeight  = $(mainImageId).height();
 
-	const subImageIdNum    = $('.image-upload').data('id');
-	const subImageId       = "#sub-prototype-image" + subImageIdNum;
-	const subImageWidth    = 213;
-	const subImageHeight   = 200; 
+	// Collection of custom data(data-sub-image-id)
+	const subImageIdNums = $('div[data-sub-image-id]').map(function () {
+		return $(this).attr('data-sub-image-id');
+	});
+	const firstSubImageId  = "#sub-prototype-image" + subImageIdNums[0];
+	const secondSubImageId = "#sub-prototype-image" + subImageIdNums[1];
+	const subImageWidth    = $('.list-group-item').width();
+	const subImageHeight   = $('.list-group-item').height();
 
 	const reader          =  new FileReader();
 
@@ -19,8 +23,7 @@ $(document).on("turbolinks:load", function(){
 			// get an image file
 			const file = $(this).prop('files')[0];
 
-			if(file.type.match('image.*')) {
-
+			if(file.type.match('image*')) {
 				reader.onload = function() {
 					let idNameImage = $(idName + ' img');
 
@@ -38,5 +41,10 @@ $(document).on("turbolinks:load", function(){
 	}
 
 	previewImage(mainImageId);
-	previewImage(subImageId);
+	previewImage(firstSubImageId);
+	previewImage(secondSubImageId);
+
+	$('.main-prototype-image').width(mainImageWidth).height(mainImageHeight);
+	$('.sub-prototype-image').width(subImageWidth).height(subImageHeight);
+
 });
