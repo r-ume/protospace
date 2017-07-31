@@ -8,9 +8,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # validation 
-  validates :name, presence: true 
+  # validation
+  validates :name, presence: true
 
   # association
   has_many :prototypes
+  has_many :likes, dependent: :destroy
 end
