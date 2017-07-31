@@ -18,13 +18,17 @@ class PrototypeDecorator < ApplicationDecorator
 
   def likes
     object.likes_count
-  end	
+  end
 
   def user_name
     object.user.name
-  end 
+  end
 
   def user_profile
     object.user.profile
+  end
+
+  def is_liked_current_user?
+    object.likes.find_by(user_id: h.current_user)
   end
 end
