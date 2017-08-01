@@ -4,5 +4,5 @@ class Like < ApplicationRecord
 
   # association
   belongs_to :user
-  belongs_to :prototype
+  belongs_to :prototype, counter_cache: :likes_count
 end
