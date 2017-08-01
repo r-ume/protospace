@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   # Properties
-  # email, password, name, profile, position, occupation
+  # email, password, name, profile, position, occupation, avatar
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,4 +13,7 @@ class User < ApplicationRecord
 
   # association
   has_many :prototypes
+
+  # carrierwave
+  mount_uploader :avatar, AvatarUploader
 end

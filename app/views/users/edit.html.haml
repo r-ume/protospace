@@ -9,7 +9,8 @@
               = f.text_field :name, placeholder: "Input Username", autofocus: true, required: true
             .user-image.col-md-2
               %button.btn.btn-primary Change image
-              %input{type: "file"}/
+              = f.file_field :avatar
+              -#%input{type: "file"}/
           .user-email
             = f.text_field :email, placeholder: "Input Email", required: true
         .col-md-12
