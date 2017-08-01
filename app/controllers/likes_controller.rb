@@ -2,12 +2,11 @@ class LikesController < ApplicationController
   before_action :set_prototype, only: [:create, :destroy]
 
   def create
-    binding.pry
     @like = @prototype.likes.create(user_id: current_user.id)
   end
 
   def destroy
-
+    @prototype.likes.find_by(user_id: current_user.id).destroy
   end
 
   private
