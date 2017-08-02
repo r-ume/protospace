@@ -2,7 +2,6 @@
 //http://yamakadoh.net/weblog/?p=595
 
 $(document).on("turbolinks:load", function(){
-
     const mainImageId      = "#main-prototype-image";
     const mainImageWidth   = $(mainImageId).width();
     const mainImageHeight  = $(mainImageId).height();
@@ -64,6 +63,4 @@ $(document).on("turbolinks:load", function(){
     $('.main-prototype-image').width(mainImageWidth).height(mainImageHeight);
     $('.sub-prototype-image').width(subImageWidth).height(subImageHeight);
     $('.avatar-image').width(avatarImageWidth).height(avatarImageHeight);
-
-
 });
