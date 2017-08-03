@@ -7,9 +7,10 @@
           .user-name_image.row
             .user-name.col-md-10
               = f.text_field :name, placeholder: "Input Username", autofocus: true, required: true
-            .user-image.col-md-2
+            .user-image.col-md-2#avatar-image
+              = image_tag(@user.avatar, class: "user-image avatar-image", id: "avatar-image", style: "width: 75px; height: 75px; right: 17px;, bottom: 2px;")
+              = f.file_field :avatar
               %button.btn.btn-primary Change image
-              %input{type: "file"}/
           .user-email
             = f.text_field :email, placeholder: "Input Email", required: true
         .col-md-12
