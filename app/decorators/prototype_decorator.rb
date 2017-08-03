@@ -27,4 +27,8 @@ class PrototypeDecorator < ApplicationDecorator
   def user_profile
     object.user.profile
   end
+
+  def user_avatar
+    object.user.avatar
+  end
 end
