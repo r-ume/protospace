@@ -13,4 +13,5 @@ class User < ApplicationRecord
 
   # association
   has_many :prototypes
+  has_many :comments
 end
