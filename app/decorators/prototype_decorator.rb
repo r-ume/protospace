@@ -28,6 +28,10 @@ class PrototypeDecorator < ApplicationDecorator
     object.user.profile
   end
 
+  def user_avatar
+    object.user.avatar
+  end
+
   def is_liked_current_user?
     object.likes.find_by(user_id: h.current_user)
   end
