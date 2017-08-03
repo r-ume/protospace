@@ -1,8 +1,16 @@
+# == Schema Information
+#
+# Table name: prototype_images
+#
+#  id           :integer          not null, primary key
+#  content      :string(255)
+#  prototype_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  status       :integer
+#
+
 class PrototypeImage < ApplicationRecord
-
-  # properties
-  # content, status
-
   # association
   belongs_to :prototype
 

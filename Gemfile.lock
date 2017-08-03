@@ -47,6 +47,9 @@ GEM
       activerecord (>= 4.2.8)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    annotate (2.7.2)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     arel (8.0.0)
     autoprefixer-rails (7.1.1.2)
       execjs
@@ -249,6 +252,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  annotate
   bootstrap-sass
   bullet
   byebug
@@ -278,4 +282,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.13.2
+   1.15.3
