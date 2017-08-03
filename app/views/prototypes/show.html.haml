@@ -48,10 +48,11 @@
       .comments_list
         = render partial: 'comments/comment', collection: @comments, as: :comment
 
-      = form_for [@prototype, @comment], html: { class: 'form-online' }, remote: true do |f|
-        %h4 Write a comment
-        .row
-          .form-group.col-md-10
-            = f.text_area :text, class: 'form-control', placeholder: 'Your comments', rows: 3
-          .form-group.col-md-2
-            = f.submit 'Comment', class: 'btn btn-primary'
+      - if user_signed_in?
+        = form_for [@prototype, @comment], html: { class: 'form-online' }, remote: true do |f|
+          %h4 Write a comment
+          .row
+            .form-group.col-md-10
+              = f.text_area :text, class: 'form-control', placeholder: 'Your comments', rows: 3
+            .form-group.col-md-2
+              = f.submit 'Comment', class: 'btn btn-primary'
