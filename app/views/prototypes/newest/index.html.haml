@@ -1,0 +1,25 @@
+.jumbotron
+  .container.text-center
+    = image_tag("header_logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "73px")
+
+= render partial: 'prototypes/type_header', local: { filter_type: @filter_type }
+
+
+-#.filter-nav
+-#  .container
+-#    .row
+-#      %ul.nav.nav-pills.col-lg-11
+-#        %li.active{role: "presentation"}
+-#          = link_to popular_index_path do
+-#            Popular PHOTO
+-#        %li{role: "presentation"}
+-#          = link_to newest_index_path do
+-#            Newest PHOTO
+-#      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
+
+.container.proto-list
+  .row
+    = render partial: 'prototypes/prototype', collection: @prototypes, as: :prototype
+
+.text-center
+  = will_paginate @prototypes, renderer: BootstrapPagination::Rails

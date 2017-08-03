@@ -1,0 +1,10 @@
+.filter-nav
+  .container
+    .row
+      %ul.nav.nav-pills.col-lg-11
+        %li.active{role: "presentation"}
+          %a{href: "#"} Popular PROTO
+        %li{role: "presentation"}
+          = link_to newest_index_path do
+            Newest PHOTO
+      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
