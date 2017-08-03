@@ -4,6 +4,7 @@ class PrototypesController < ApplicationController
 
   def index
     @prototypes = Prototype.eager_load(:user, :prototype_images).all.paginate(page: params[:page]).decorate
+    @filter_type = 'normal'
   end
 
   def show
