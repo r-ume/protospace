@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20170716131235) do
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id"
-    t.integer "prototype_id"
+    t.bigint "user_id"
+    t.bigint "prototype_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["prototype_id"], name: "index_likes_on_prototype_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "prototype_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
