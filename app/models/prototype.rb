@@ -1,7 +1,18 @@
-class Prototype < ApplicationRecord
-  # properties
-  # name, catchcopy, concept, likes_count
+# == Schema Information
+#
+# Table name: prototypes
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  catchcopy   :text(65535)
+#  concept     :text(65535)
+#  likes_count :integer          default(0)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :integer
+#
 
+class Prototype < ApplicationRecord
   # validation
   validates :name, :catchcopy, :concept, presence: true
 
