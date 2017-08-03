@@ -16,7 +16,7 @@ class PrototypeDecorator < ApplicationDecorator
     object.prototype_images.sub
   end
 
-  def likes
+  def likes_num
     object.likes_count
   end
 
