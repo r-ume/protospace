@@ -1,0 +1,2 @@
+$('.form-control').val('');
+$('.comments_list').html('<%= j(render partial: 'comments/comment', collection: @comments, as: :comment) %>');

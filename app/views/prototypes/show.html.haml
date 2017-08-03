@@ -45,9 +45,10 @@
       %span.num
         = "(#{@prototype.comments_num})"
     .col-md-8
-      = render partial: 'comments/comment', collection: @comments, as: :comment
+      .comments_list
+        = render partial: 'comments/comment', collection: @comments, as: :comment
 
-      = form_for [@prototype, @comment], html: { class: 'form-online' } do |f|
+      = form_for [@prototype, @comment], html: { class: 'form-online' }, remote: true do |f|
         %h4 Write a comment
         .row
           .form-group.col-md-10
