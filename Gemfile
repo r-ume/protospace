@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#FUNDAMENTAL
+# FUNDAMENTAL
 gem 'rails', '~> 5.1.1'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.7'
@@ -24,26 +24,29 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
 
-#JAVASCRIPT
+# JAVASCRIPT
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jquery-rails'
 
-#DEVISE
+# DEVISE
 gem 'devise'
 
-#PAGINATION
+# PAGINATION
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
-#DECORATOR
+# DECORATOR
 gem 'draper'
 
-#IMAGE UPLOAD
+# IMAGE UPLOAD
 gem 'carrierwave'
 
-#N+1 MINOTOR
+# N+1 MINOTOR
 gem 'bullet'
+
+# Annotation of SCHEMA
+gem 'annotate', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
