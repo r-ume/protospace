@@ -26,7 +26,7 @@ class Prototype < ApplicationRecord
 
   accepts_nested_attributes_for :prototype_images, allow_destroy: true, reject_if: :images_with_no_contents
 
-  scope :recent,  -> { order(created_at: :DESC) }
+  scope :newest,  -> { order(created_at: :DESC) }
   scope :popular, -> { order(likes_count: :DESC) }
 
   def images_with_no_contents(attributed)
