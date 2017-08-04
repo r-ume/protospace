@@ -52,16 +52,24 @@ class PrototypesController < ApplicationController
   end
 
   private
-  def prototype_params
-    params.require(:prototype)
-      .permit(:name, :catchcopy, :concept, :tag_list, prototype_images_attributes: [:id, :content, :status])
-  end
-
   def set_prototype
     @prototype = Prototype.find(params[:id]).decorate
   end
 
   def set_tag_default_placeholder
     @tag_default_placeholders = ["Web Design", "UI", "Application"]
+  end
+
+  def prototype_params
+    params.require(:prototype)
+        .permit(:name,
+                :catchcopy,
+                :concept,
+                prototype_images_attributes: [:id, :content, :status])
+        .merge(tag_list: tag_params)
+  end
+
+  def tag_params
+    params.require(:prototype).require(:tag_list)
   end
 end
