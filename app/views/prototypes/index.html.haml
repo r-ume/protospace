@@ -10,7 +10,7 @@
           %a{href: "#"} Popular PROTO
         %li{role: "presentation"}
           %a{href: "#"} Newest PROTO
-      = button_to tags_path, class: "btn btn-default col-lg-1" do
+      = button_to tags_path, method: :get, class: "btn btn-default col-lg-1" do
         View Tags
 
 .container.proto-list
