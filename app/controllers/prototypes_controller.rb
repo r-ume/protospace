@@ -62,6 +62,6 @@ class PrototypesController < ApplicationController
   end
 
   def set_tag_default_placeholder
-    @tag_default_placeholder = ["Web Design", "UI", "Application"]
+    @tag_default_placeholders = ["Web Design", "UI", "Application"]
   end
 end
