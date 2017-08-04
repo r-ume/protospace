@@ -1,3 +1,7 @@
+.jumbotron
+  .container.text-center
+    = image_tag("header_logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "73px")
+
 .container
   .row
     %h2 Tag List
@@ -5,4 +9,4 @@
       %ul
         - @tags.each do |tag|
           %li.col-md-4
-            = link_to tag.name, tag_path(tag), class: "button btn btn-default"
+            = link_to tag.name, tag_path(tag.name), class: "button btn btn-default"
