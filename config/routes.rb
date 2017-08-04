@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
-  resources :tags, only: :index, param: :tag_name
+  resources :tags,  only: [:index, :show],        param: :tag_name
 
   resources :prototypes, except: [:index] do
     resources :likes, only: [:create, :destroy]
