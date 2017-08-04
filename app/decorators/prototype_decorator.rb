@@ -35,4 +35,8 @@ class PrototypeDecorator < ApplicationDecorator
   def is_liked_current_user?
     object.likes.find_by(user_id: h.current_user)
   end
+
+  def tags
+    object.tags.pluck(:name)
+  end
 end
