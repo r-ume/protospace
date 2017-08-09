@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
-  resources :prototypes, except: [:index] do
+  resources :prototypes, except: :index do
     resources :likes, only: [:create, :destroy]
-    resources :comments, only: [:create]
+    resources :comments, only: :create
   end
 end
