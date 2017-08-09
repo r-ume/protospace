@@ -46,8 +46,8 @@
         = "(#{@prototype.comments_num})"
     .col-md-8
       .comments_list
-        = render partial: 'comments/comment', collection: @comments, as: :comment
-
+        = render @comments
+        
       - if user_signed_in?
         = form_for [@prototype, @comment], html: { class: 'form-online' }, remote: true do |f|
           %h4 Write a comment
