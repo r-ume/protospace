@@ -15,7 +15,7 @@ class PrototypeDecorator < ApplicationDecorator
   end
 
   def likes_num
-    object.likes_count
+    object.likes_count > 0 ? object.likes_count : 0
   end
 
   def user_name
