@@ -33,6 +33,7 @@ class User < ApplicationRecord
 
   # association
   has_many :prototypes
+  has_many :comments
   has_many :likes, dependent: :destroy
 
   # carrierwave

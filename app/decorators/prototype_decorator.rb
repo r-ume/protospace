@@ -1,8 +1,6 @@
 class PrototypeDecorator < ApplicationDecorator
   delegate_all
-
   decorates :prototype
-  decorates_association :user
 
   def posted_time
     object.created_at.strftime('%Y/%m/%d %H:%M:%S')
@@ -17,7 +15,7 @@ class PrototypeDecorator < ApplicationDecorator
   end
 
   def likes_num
-    object.likes_count
+    object.likes_count > 0 ? object.likes_count : 0
   end
 
   def user_name
@@ -34,6 +32,10 @@ class PrototypeDecorator < ApplicationDecorator
 
   def is_liked_current_user?
     object.likes.find_by(user_id: h.current_user)
+  end
+
+  def comments_num
+    object.comments.size
   end
 
   def tags
