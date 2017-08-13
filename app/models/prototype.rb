@@ -22,6 +22,7 @@ class Prototype < ApplicationRecord
   # association
   belongs_to :user
   has_many :prototype_images, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
   accepts_nested_attributes_for :prototype_images, allow_destroy: true, reject_if: :images_with_no_contents

@@ -14,10 +14,12 @@ ActiveRecord::Schema.define(version: 20170716131235) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text"
-    t.integer "user_id"
-    t.integer "prototype_id"
+    t.bigint "user_id"
+    t.bigint "prototype_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["prototype_id"], name: "index_comments_on_prototype_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
