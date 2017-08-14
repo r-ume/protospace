@@ -41,6 +41,7 @@ gem 'draper'
 
 # IMAGE UPLOAD
 gem 'carrierwave'
+gem 'fog'
 
 # N+1 MINOTOR
 gem 'bullet'
