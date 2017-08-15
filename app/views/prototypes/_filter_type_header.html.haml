@@ -1,0 +1,12 @@
+.filter-nav
+  .container
+    .row
+      %ul.nav.nav-pills.col-lg-11
+        %li{ class: "#{ 'active' if filter_type == 'popular' }"}
+          = link_to popular_index_path do
+            Popular PROTO
+        %li{ class: "#{ 'active' if filter_type == 'newest' }"}
+          = link_to newest_index_path do
+            Newest PHOTO
+      = button_to tags_path, method: :get, class: "btn btn-default col-lg-1" do
+        View Tags
