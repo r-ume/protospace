@@ -2,11 +2,11 @@
   .container.text-center
     = image_tag("header_logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "73px")
 
-= render partial: 'prototypes/filter_type_header', local: { filter_type: @filter_type }
+= render partial: 'prototypes/filter_type_header', locals: { filter_type: @filter_type }
 
 .container.proto-list
   .row
-    = render partial: 'prototypes/prototype', collection: @prototypes, as: :prototype    
+    = render @prototypes
 
 .text-center
   = will_paginate @prototypes, renderer: BootstrapPagination::Rails
