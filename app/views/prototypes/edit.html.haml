@@ -38,12 +38,9 @@
         .col-md-12
           %h4 Tag List
           .row
-            .col-md-3
-              %input{type: "text", placeholder: "Web Design"}/
-            .col-md-3
-              %input{type: "text", placeholder: "UI"}/
-            .col-md-3
-              %input{type: "text", placeholder: "Application"}/
+            - @tag_default_placeholders.each_with_index do |tag, index|
+              .col-md-3
+                = text_field_tag "prototype[tag_list][]", @prototype.tags[index], placeholder: "#{tag}"
 
     .row.text-center.proto-btn
       = f.submit 'Update', class: 'btn btn-lg btn-primary btn-block'

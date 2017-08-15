@@ -8,4 +8,5 @@
         %li{ class: "#{ 'active' if filter_type == 'newest' }"}
           = link_to newest_index_path do
             Newest PHOTO
-      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
+      = button_to tags_path, method: :get, class: "btn btn-default col-lg-1" do
+        View Tags

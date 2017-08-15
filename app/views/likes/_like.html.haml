@@ -1,16 +1,10 @@
-- if user_signed_in?
-  - if prototype.is_liked_current_user?
-    = button_to prototype_like_path(prototype, current_user), method: :delete, class: "button btn btn-default", remote: true do
-      = image_tag("icon_red_heart.svg")
-      %span
-      = "Like #{prototype.likes_count}"
-  - else
-    = button_to prototype_likes_path(prototype), class: "button btn btn-default", remote: true do
-      = image_tag("icon_heart.svg")
-      %span
-      = "Like #{prototype.likes_count}"
+- if prototype.is_liked_current_user?
+  = button_to prototype_like_path(prototype, current_user), method: :delete, class: "button btn btn-default", remote: true do
+    = render partial:'likes/liked', locals: { prototype: prototype }
 - else
-  = button_to prototype_likes_path(prototype_id: prototype), class: "button btn btn-default" do
-    = image_tag("icon_heart.svg")
-    %span
-    = "Like #{prototype.likes_count}"
+  - if user_signed_in?
+    = button_to prototype_likes_path(prototype), class: "button btn btn-default", remote: true do
+      = render partial:'likes/non_liked', locals: { prototype: prototype }
+  - else
+    = button_to new_user_session_path, method: :get, class: "button btn btn-default" do
+      = render partial:'likes/non_liked', locals: { prototype: prototype }

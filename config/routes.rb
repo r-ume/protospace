@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   root 'prototypes#index'
 
   devise_for :users
-  resources :prototypes, except: [:index] do
+
+  resources :users, only: [:show, :edit, :update]
+  resources :tags,  only: [:index, :show],        param: :tag_name
+
+  resources :prototypes, except: :index do
     resources :likes, only: [:create, :destroy]
+    resources :comments, only: :create
   end
 
   scope module: :prototypes do
@@ -11,5 +16,4 @@ Rails.application.routes.draw do
     resources :popular, only: :index
   end
 
-  resources :users, only: [:show, :edit, :update]
 end
