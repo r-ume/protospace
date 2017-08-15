@@ -25,7 +25,12 @@ class Prototype < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  acts_as_taggable_on :tags
+  
   accepts_nested_attributes_for :prototype_images, allow_destroy: true, reject_if: :images_with_no_contents
+
+  scope :newest,  -> { order(created_at: :DESC) }
+  scope :popular, -> { order(likes_count: :DESC) }
 
   def images_with_no_contents(attributed)
     attributed['content'].blank?
