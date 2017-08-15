@@ -15,7 +15,7 @@
 
 .container.proto-list
   .row
-    = render partial: 'prototypes/prototype', collection: @prototypes, as: :prototype    
+    = render partial: 'prototypes/prototype', collection: @prototypes, as: :prototype
 
 .text-center
   = will_paginate @prototypes, renderer: BootstrapPagination::Rails

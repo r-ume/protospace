@@ -37,4 +37,8 @@ class PrototypeDecorator < ApplicationDecorator
   def comments_num
     object.comments.size
   end
+
+  def tags
+    object.tags.pluck(:name)
+  end
 end
