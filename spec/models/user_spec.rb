@@ -36,8 +36,24 @@ describe User do
       end
     end
 
-    context '' do
+    context 'when an user lacks of one of valid attributes' do
+      it 'is invalid without a name' do
+        user.name = nil
+        user.valid?
+        expect(user.errors[:name]).to include('can\'t be blank')
+      end
 
+      it 'is invalid without an email' do
+        user.email = nil
+        user.valid?
+        expect(user.errors[:email]).to include('can\'t be blank')
+      end
+
+      it 'is invalid without a password' do
+        user.password = nil
+        user.valid?
+        expect(user.errors[:password]).to include('can\'t be blank')
+      end
     end
   end
 
