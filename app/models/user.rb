@@ -29,7 +29,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # validation
-  validates :name, presence: true
+  validates :name,  presence: true
+  validates :email, uniqueness: true
 
   # association
   has_many :prototypes
