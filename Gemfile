@@ -12,6 +12,7 @@ gem 'puma', '~> 3.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 gem 'pry-rails'
+gem 'dotenv-rails'
 
 # TAG
 gem 'acts-as-taggable-on'
@@ -41,9 +42,7 @@ gem 'draper'
 
 # IMAGE UPLOAD
 gem 'carrierwave'
-
-# N+1 MINOTOR
-gem 'bullet'
+gem 'fog'
 
 # Annotation of SCHEMA
 gem 'annotate', require: false
@@ -57,6 +56,8 @@ group :development, :test do
 end
 
 group :development do
+  # N+1 MINOTOR
+  gem 'bullet'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

@@ -72,6 +72,6 @@ class PrototypesController < ApplicationController
   end
 
   def tag_params
-    params.require(:prototype).require(:tag_list)
+    params.require(:prototype).permit(:tag_list)
   end
 end
