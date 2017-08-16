@@ -24,12 +24,12 @@
 
 FactoryGirl.define do
   factory :user do
-    name               { Faker::HarryPotter.character } # just for fun
-    profile            { Faker::HarryPotter.book }
-    position           { Faker::Job.field }
-    occupation         { Faker::Job.title }
-    avatar             { fixture_file_upload(Rails.root.join('spec/fixtures/baymax.jpeg')) }
-    email              { Faker::Internet.email }
-    encrypted_password { Faker::Internet.password(6, 128) }
+    name       { Faker::HarryPotter.character } # just for fun
+    profile    { Faker::HarryPotter.book }
+    position   { Faker::Job.field }
+    occupation { Faker::Job.title }
+    avatar     { fixture_file_upload(Rails.root.join('spec/fixtures/baymax.jpeg')) }
+    email      { Faker::Internet.email }
+    password   { Faker::Internet.password(6, 128) }
   end
 end
