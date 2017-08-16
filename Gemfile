@@ -44,9 +44,6 @@ gem 'draper'
 gem 'carrierwave'
 gem 'fog'
 
-# N+1 MINOTOR
-gem 'bullet'
-
 # Annotation of SCHEMA
 gem 'annotate', require: false
 
@@ -59,6 +56,8 @@ group :development, :test do
 end
 
 group :development do
+  # N+1 MINOTOR
+  gem 'bullet'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
