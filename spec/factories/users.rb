@@ -30,6 +30,6 @@ FactoryGirl.define do
     occupation { Faker::Job.title }
     avatar     { fixture_file_upload(Rails.root.join('spec/fixtures/baymax.jpeg')) }
     email      { Faker::Internet.email }
-    password   { Faker::Internet.password(6, 128) }
+    password   { Faker::Internet.password(6, 128, true, true) }
   end
 end

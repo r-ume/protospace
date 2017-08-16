@@ -55,6 +55,37 @@ describe User do
         expect(user.errors[:password]).to include('can\'t be blank')
       end
     end
-  end
 
+    context 'when an user tries to sign up with a duplicated email address' do
+      it 'is invalid' do
+        existing_user = create(:user)
+        user.email = existing_user.email
+        user.valid?
+        expect(user.errors[:email]).to include('has already been taken')
+      end
+    end
+
+    context 'when checking the length of the password' do
+      it 'is valid if user\'s password length is within 6 to 128 characters' do
+        password = Faker::Internet.password(6, 128, true, true)
+        user.password = password
+        user.valid?
+        expect(user).to be_valid
+      end
+
+      it 'is invalid if an user has a password that has less than 5 characters' do
+        password = Faker::Internet.password(1, 5, true, true)
+        user.password = password
+        user.valid?
+        expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
+      end
+
+      it 'is invalid if an user has a password that has more than 129 characters' do
+        password = Faker::Internet.password(129)
+        user.password = password
+        user.valid?
+        expect(user.errors[:password]).to include("is too long (maximum is 128 characters)")
+      end
+    end
+  end
 end
