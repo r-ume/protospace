@@ -3,7 +3,11 @@ require 'rails_helper'
 describe PrototypesController, type: :controller do
   describe 'with user login' do
     before { login_user }
-    let(:prototype) { create(:prototype) }
+
+    let(:prototype)      { create(:prototype) }
+    let(:prototype_name) { Faker::HarryPotter.book}
+    let(:valid_params)   { { id: prototype.id, prototype: attributes_for(:prototype, name: prototype_name) } }
+    let(:invalid_params) { { id: prototype.id, prototype: attributes_for(:prototype, name: nil) } }
 
     context 'GET #index' do
       before do
@@ -63,5 +67,24 @@ describe PrototypesController, type: :controller do
       end
     end
 
+    context 'POST #create' do
+      before do
+        post :create, params: valid_params
+      end
+
+      it 'creates a new prototype' do
+        expect {
+          post :create, params: valid_params
+        }.to change(Prototype, :count).by(1)
+      end
+
+      it 'redirects to root path' do
+        expect(response).to redirect_to root_path
+      end
+
+      it 'shows the successful flash message' do
+        expect(flash[:notice]).to eq 'Prototype was successfully created.'
+      end
+    end
   end
 end
