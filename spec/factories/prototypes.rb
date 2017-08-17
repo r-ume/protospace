@@ -54,15 +54,15 @@ FactoryGirl.define do
 
     trait :with_likes do
       transient do
-        likes_count 5
+        default_likes_num 5
       end
 
       after(:build) do |prototype, evaluator|
-        prototype.likes << build_list(:like, evaluator.likes_count)
+        prototype.likes << build_list(:like, evaluator.default_likes_num)
       end
 
       after(:create) do |prototype, evaluator|
-        prototype.likes << create_list(:like, evaluator.likes_count)
+        prototype.likes << create_list(:like, evaluator.default_likes_num)
       end
     end
   end
