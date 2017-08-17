@@ -20,9 +20,19 @@ describe Prototype do
     let(:user) { create(:user) }
     let(:prototype)  { create(:prototype) }
 
-    it 'is associated with a user' do
-      prototype.user = user
-      expect(prototype.user).to eq user
+    context 'with a user' do
+      it 'is associated with an user' do
+        prototype.user = user
+        expect(prototype.user).to eq user
+      end
+    end
+
+    context 'with comments' do
+      let(:additional_comments_num) { 5 }
+      let!(:prototype) { create(:prototype, :with_comments, default_comments_num: additional_comments_num) }
+      it 'deletes the comments when a prototype gets deleted' do
+        expect{ prototype.destroy }.to change{ Comment.count }.by(-1 * (additional_comments_num * 2))
+      end
     end
   end
 end

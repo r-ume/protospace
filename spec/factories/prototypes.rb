@@ -13,12 +13,29 @@
 #
 
 FactoryGirl.define do
-  factory :prototype do
+  factory :prototype, class: Prototype do
     name        { Faker::Pokemon.name }
     catchcopy   { Faker::StarWars.droid }
     concept     { Faker::MostInterestingManInTheWorld.quote }
     likes_count { Faker::Number.between(1, 300) }
-    created_at
+    created_at  { Faker::Time.between(7.days.ago, Time.now) }
     association :user, factory: :user, name: Faker::Pokemon.name
+
+    trait :with_comments do
+      # 参考url
+      # https://stackoverflow.com/questions/38573131/what-is-the-purpose-of-a-transient-do-block-in-factorygirl-factories
+      # transient attributes allow you to pass in data that isn’t an attribute on the model.
+      ignore do
+        default_comments_num 5
+      end
+
+      after(:build) do |prototype, evaluator|
+        prototype.comments << build_list(:comment, evaluator.default_comments_num)
+      end
+
+      after(:create) do |prototype, evaluator|
+        prototype.comments << create_list(:comment, evaluator.default_comments_num)
+      end
+    end
   end
 end
