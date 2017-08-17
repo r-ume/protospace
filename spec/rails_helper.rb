@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'rails-controller-testing'
 require 'devise'
 require 'support/controller_macros'
+require 'rspec/collection_matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
