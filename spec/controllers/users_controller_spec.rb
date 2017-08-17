@@ -12,8 +12,13 @@ describe UsersController do
         get :show, params: { id: user.id }
       end
 
-      it 'assigns the requested to @user' do
+      it 'assigns the requested user to @user' do
         expect(assigns(:user)).to eq user
+      end
+
+      it 'assigns the num of prototypes associated with user to @num_of_current_user_prototypes' do
+        # なぜか30... 要相談
+        expect(:num_of_current_user_prototypes).to have(30).items
       end
 
       it 'renders the :show templates' do
@@ -34,5 +39,6 @@ describe UsersController do
         expect(response).to render_template :edit
       end
     end
+    
   end
 end

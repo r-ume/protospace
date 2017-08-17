@@ -3,11 +3,11 @@ class UsersController < ApplicationController
 
 	def show
 		@num_of_current_user_prototypes = @user.prototypes.size || 0
-		@current_user_prototypes        = @user.prototypes.paginate(page: params[:page]).decorate
+		@current_user_prototypes        = @user.prototypes.paginate(page: params[:page])
 	end
 
 	def edit
-		
+
 	end
 
 	def update
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 			redirect_to root_path, notice: "edited your account in successfully."
 		else
 			render :edit
-		end 
+		end
 	end
 
 	private
