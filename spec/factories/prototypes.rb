@@ -21,6 +21,20 @@ FactoryGirl.define do
     created_at  { Faker::Time.between(7.days.ago, Time.now) }
     association :user, factory: :user, name: Faker::Pokemon.name
 
+    trait :with_main_image do
+      ignore do
+        default_main_image_num 1
+      end
+
+      after(:build) do |prototype, evaluator|
+        prototype.prototype_images << build_list(:main_image, evaluator.default_main_image_num)
+      end
+
+      after(:create) do |prototype, evaluator|
+        prototype.prototype_images << create_list(:main_image, evaluator.default_main_image_num)
+      end
+    end
+
     trait :with_sub_images do
       ignore do
         default_sub_images_num 3
