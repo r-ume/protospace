@@ -98,4 +98,20 @@ describe Prototype do
       end
     end
   end
+
+  describe 'images_with_no_contents method' do
+    context 'does not allow any image to be saved without any content' do
+      it 'if main' do
+        prototype_main_image = build(:prototype_image, :main, content: nil)
+        prototype_main_image.valid?
+        expect(prototype_main_image.errors[:content]).to include('can\'t be blank')
+      end
+
+      it 'if sub' do
+        prototype_main_image = build(:prototype_image, :sub, content: nil)
+        prototype_main_image.valid?
+        expect(prototype_main_image.errors[:content]).to include('can\'t be blank')
+      end
+    end
+  end
 end
