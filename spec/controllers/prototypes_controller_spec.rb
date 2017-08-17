@@ -68,22 +68,44 @@ describe PrototypesController, type: :controller do
     end
 
     context 'POST #create' do
-      before do
-        post :create, params: valid_params
-      end
-
-      it 'creates a new prototype' do
-        expect {
+      context 'with valid_params' do
+        before do
           post :create, params: valid_params
-        }.to change(Prototype, :count).by(1)
+        end
+
+        it 'creates a new prototype' do
+          expect {
+            post :create, params: valid_params
+          }.to change(Prototype, :count).by(1)
+        end
+
+        it 'redirects to root path' do
+          expect(response).to redirect_to root_path
+        end
+
+        it 'shows the successful flash message' do
+          expect(flash[:notice]).to eq 'Prototype was successfully created.'
+        end
       end
 
-      it 'redirects to root path' do
-        expect(response).to redirect_to root_path
-      end
+      context 'with invalid_params' do
+        before do
+          post :create, params: invalid_params
+        end
 
-      it 'shows the successful flash message' do
-        expect(flash[:notice]).to eq 'Prototype was successfully created.'
+        it 'creates a new prototype' do
+          expect {
+            post :create, params: invalid_params
+          }.not_to change(Prototype, :count)
+        end
+
+        it 'redirects to root path' do
+          expect(response).to render_template :new
+        end
+
+        it 'shows the successful flash message' do
+          expect(flash[:alert]).to eq 'Prototype was not successfully created.'
+        end
       end
     end
 
