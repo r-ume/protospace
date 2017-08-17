@@ -153,5 +153,26 @@ describe PrototypesController, type: :controller do
         expect(flash[:notice]).to eq 'Prototype was successfully updated.'
       end
     end
+
+    context 'DELETE #destroy' do
+      let(:delete_request) { delete :destroy, params }
+      let(:params)  { { params: { id: prototype.id } } }
+
+      subject!(:prototype){ create(:prototype) }
+
+      it 'assigns the requested prototype to @prototype' do
+        delete_request
+        expect(assigns(:prototype)).to eq prototype
+      end
+
+      it 'deletes the prototype' do
+        expect{ prototype.destroy }.to change(Prototype, :count).by(-1)
+      end
+
+      it 'redirect to root_path' do
+        delete_request
+        expect(response).to render_template root_path
+      end
+    end
   end
 end
