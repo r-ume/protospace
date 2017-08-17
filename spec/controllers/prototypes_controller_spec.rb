@@ -27,6 +27,28 @@ describe PrototypesController, type: :controller do
       end
     end
 
+    context 'GET #show' do
+      before do
+        get :show, params: { id: prototype.id }
+      end
+
+      it 'assigns the requested prototype to prototype' do
+        expect(assigns(:prototype)).to eq prototype
+      end
+
+      it 'expects the requested prototype to be decorated with PrototypeDecorator' do
+        expect(assigns(:prototype)).to be_decorated_with PrototypeDecorator
+      end
+
+      it 'assigns the requested comment to a new instance of comment' do
+        expect(assigns(:comment)).to be_a_new(Comment)
+      end
+
+      it 'renders the :show template' do
+        expect(response).to render_template :show
+      end
+    end
+
     context 'GET #new' do
       before do
         get :new
@@ -35,10 +57,11 @@ describe PrototypesController, type: :controller do
       it 'assigns the requested prototype to a new instance of prototype' do
         expect(assigns(:prototype)).to be_a_new(Prototype)
       end
-      
+
       it 'renders the :new template' do
         expect(response).to render_template :new
       end
     end
+
   end
 end
