@@ -26,13 +26,24 @@ describe Prototype do
       end
     end
 
-    context 'with prototype images' do
-      let(:additional_sub_prototype_images) { 3 }
-      let!(:prototype) { create(:prototype, :with_sub_images, default_sub_images_num: additional_sub_prototype_images) }
+    context 'with prototype main image' do
+      let(:additional_main_prototype_image_num) { 1 }
+      let!(:prototype) { create(:prototype, :with_main_image, default_main_image_num: additional_main_prototype_image_num) }
+
+      it 'deletes the prototype main image when a prototype gets deleted' do
+        # total_main_image_num = default_main_image_num + additional_main_prototype_image_num = 3 + 3
+        total_main_image_num = additional_main_prototype_image_num * 2
+        expect{ prototype.destroy }.to change{ PrototypeImage.count }.by(-1 * total_main_image_num)
+      end
+    end
+
+    context 'with prototype sub images' do
+      let(:additional_sub_prototype_images_num) { 3 }
+      let!(:prototype) { create(:prototype, :with_sub_images, default_sub_images_num: additional_sub_prototype_images_num) }
 
       it 'deletes the prototype sub images when a prototype gets deleted' do
         # total_sub_images_num = addtional_sub_prototype_images + default_sub_images_num = 3 + 3
-        total_sub_images_num = additional_sub_prototype_images * 2
+        total_sub_images_num = additional_sub_prototype_images_num * 2
         expect{ prototype.destroy }.to change{ PrototypeImage.count }.by(-1 * total_sub_images_num)
       end
     end
