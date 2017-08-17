@@ -68,4 +68,34 @@ describe Prototype do
       end
     end
   end
+
+  describe 'validations' do
+    let(:prototype) { build(:prototype) }
+
+    context 'with all necessary attributes' do
+      it 'is valid' do
+        expect(prototype).to be_valid
+      end
+    end
+
+    context 'without all necessary attributes' do
+      it 'is invalid without a name' do
+        prototype.name = nil
+        prototype.valid?
+        expect(prototype.errors[:name]).to include('can\'t be blank')
+      end
+
+      it 'is invalid without a catchcopy' do
+        prototype.catchcopy = nil
+        prototype.valid?
+        expect(prototype.errors[:catchcopy]).to include('can\'t be blank')
+      end
+
+      it 'is invalid without a concept' do
+        prototype.concept = nil
+        prototype.valid?
+        expect(prototype.errors[:concept]).to include('can\'t be blank')
+      end
+    end
+  end
 end
