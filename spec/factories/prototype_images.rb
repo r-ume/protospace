@@ -10,18 +10,24 @@
 #  status       :integer
 #
 
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
-  factory :prototype_image do
-    content { fixture_file_upload(Rails.root.join('spec/fixtures/baymax.jpeg')) }
+  factory :prototype_image, class: PrototypeImage do
+    content { fixture_file_upload("spec/fixtures/baymax.jpeg", 'image/jpeg') }
     association :prototype, factory: :prototype, name: Faker::HarryPotter.book
 
-    # 参考url https://techracho.bpsinc.jp/morimorihoge/2013_08_23/12744
-    trait :main_image do
-      status 0
+    trait :main do
+      status :main
     end
 
-    trait :sub_images do
-      status 1
+    trait :sub do
+      status :sub
     end
+
+    # 参考url
+    # http://qiita.com/ogomr/items/935da1072301ddc1aeaf
+    factory :main_image, traits: [:main]
+    factory :sub_images, traits: [:sub]
   end
 end
