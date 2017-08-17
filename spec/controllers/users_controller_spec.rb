@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe UsersController do
-  let(:user)   { create(:user) }
-  let(:params) { { id: user.id, user: attributes_for(:user, name: Faker::Pokemon.name ) } }
+  let(:user)      { create(:user) }
+  let(:user_name) { Faker::Pokemon.name }
+  let(:params)    { { id: user.id, user: attributes_for(:user, name: user_name ) } }
 
   describe 'with user login' do
     before { login_user }
@@ -39,6 +40,28 @@ describe UsersController do
         expect(response).to render_template :edit
       end
     end
-    
+
+    context 'PATCH #update' do
+      before :each do
+        patch :update, params: params
+      end
+
+      it 'assigns the requested user to @user' do
+        expect(assigns(:user)).to eq user
+      end
+
+      it 'changes @user\'s attributes' do
+        user.reload
+        expect(user.name).to eq user_name
+      end
+
+      it 'redirects to root path' do
+        expect(response).to redirect_to root_path
+      end
+
+      it 'sends flash messages' do
+        expect(flash[:notice]).to eq 'edited your account in successfully.'
+      end
+    end
   end
 end
