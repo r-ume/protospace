@@ -14,8 +14,30 @@ describe PrototypesController, type: :controller do
         expect(assigns(:prototypes)).to include prototype
       end
 
-      it 'expect the requested prototypes to be decorated with PaginatingDecorator' do
+      it 'expects the requested prototypes to be decorated with PaginatingDecorator' do
         expect(assigns(:prototypes)).to be_decorated_with PaginatingDecorator
+      end
+
+      it "assigns the requested prototype to 'normal'" do
+        expect(assigns(:filter_type)).to eq 'normal'
+      end
+
+      it 'renders the :index template' do
+        expect(response).to render_template :index
+      end
+    end
+
+    context 'GET #new' do
+      before do
+        get :new
+      end
+
+      it 'assigns the requested prototype to a new instance of prototype' do
+        expect(assigns(:prototype)).to be_a_new(Prototype)
+      end
+      
+      it 'renders the :new template' do
+        expect(response).to render_template :new
       end
     end
   end
