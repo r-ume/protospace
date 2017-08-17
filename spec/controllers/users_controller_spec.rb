@@ -66,6 +66,20 @@ describe UsersController do
   end
 
   describe 'without user login' do
+    context 'GET #show' do
+      before :each do
+        get :show, params: { id: user.id }
+      end
+
+      it 'assigns the requested user to @user' do
+        expect(assigns(:user)).to eq user
+      end
+
+      it 'renders :show template' do
+        expect(response).to render_template :show
+      end
+    end
+
     context 'GET #edit' do
       it 'redirects to user show page' do
         get :edit, params: { id: user.id }
