@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe PrototypesController, type: :controller do
+  # 忘れないようにメモ:
+  # letに ! をつけると、exampleが実行する前にcreateしてくれる
+  # 定義した変数が呼ばれるタイミングではない 注意
+
+  # pending - テストが失敗すれば、成功でも失敗でもない 保留　として扱われる。
+  # skip    - テストの実行を止めたいときに使う
+  # xit     - example全体をskipさせる
+  # xdescribe, xcontext - グループ全体をスキップさせる
+  
   let!(:prototype)     { create(:prototype) }
   let(:prototype_name) { Faker::HarryPotter.book }
   let(:valid_params)   { { id: prototype.id, prototype: attributes_for(:prototype, name: prototype_name) } }
