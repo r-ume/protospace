@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe PrototypesController, type: :controller do
+  let!(:prototype)     { create(:prototype) }
+  let(:prototype_name) { Faker::HarryPotter.book }
+  let(:valid_params)   { { id: prototype.id, prototype: attributes_for(:prototype, name: prototype_name) } }
+  let(:invalid_params) { { id: prototype.id, prototype: attributes_for(:prototype, name: nil) } }
+
   describe 'with user login' do
     before { login_user }
-
-    let(:prototype)      { create(:prototype) }
-    let(:prototype_name) { Faker::HarryPotter.book}
-    let(:valid_params)   { { id: prototype.id, prototype: attributes_for(:prototype, name: prototype_name) } }
-    let(:invalid_params) { { id: prototype.id, prototype: attributes_for(:prototype, name: nil) } }
 
     context 'GET #index' do
       before do
@@ -172,6 +172,36 @@ describe PrototypesController, type: :controller do
       it 'redirect to root_path' do
         delete_request
         expect(response).to render_template root_path
+      end
+    end
+  end
+
+  describe 'without user login' do
+    context 'GET #new' do
+      it 'redirects to the login page' do
+        get :new
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'POST #create' do
+      it 'redirects to the login page' do
+        post :create
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'PATCH #update' do
+      it 'redirects to the login page' do
+        patch :update, params: { id: prototype.id }
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'DELETE #destroy' do
+      it 'redirects to the login page' do
+        delete :destroy, params: { id: prototype.id }
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
