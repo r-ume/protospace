@@ -74,9 +74,7 @@ describe PrototypesController, type: :controller do
         end
 
         it 'creates a new prototype' do
-          expect {
-            post :create, params: valid_params
-          }.to change(Prototype, :count).by(1)
+          expect { post :create, params: valid_params }.to change(Prototype, :count).by(1)
         end
 
         it 'redirects to root path' do
@@ -128,29 +126,54 @@ describe PrototypesController, type: :controller do
     end
 
     context 'PATCH #update' do
-      before do
-        patch :update, params: valid_params
+      context 'with valid attributes' do
+        before do
+          patch :update, params: valid_params
+        end
+
+        it 'assigns the requested prototype to @prototype' do
+          expect(assigns(:prototype)).to eq prototype
+        end
+
+        it 'expects the requested prototypes to be decorated with PrototypeDecorator' do
+          expect(assigns(:prototype)).to be_decorated_with PrototypeDecorator
+        end
+
+        it 'updates prototype' do
+          prototype.reload
+          expect(prototype.name).to eq prototype_name
+        end
+
+        it 'redirects to root_path'  do
+          expect(response).to redirect_to root_path
+        end
+
+        it 'shows flash message to show update prototype successfully' do
+          expect(flash[:notice]).to eq 'Prototype was successfully updated.'
+        end
       end
 
-      it 'assigns the requested prototype to prototype' do
-        expect(assigns(:prototype)).to eq prototype
-      end
+      context 'with invalid attributes' do
+        before do
+          patch :update, params: invalid_params
+        end
 
-      it 'expects the requested prototypes to be decorated with PrototypeDecorator' do
-        expect(assigns(:prototype)).to be_decorated_with PrototypeDecorator
-      end
+        it 'assigns the requested prototype to @prototype' do
+          expect(assigns(:prototype)).to eq prototype
+        end
 
-      it 'updates prototype' do
-        prototype.reload
-        expect(prototype.name).to eq prototype_name
-      end
+        it 'expects the requested prototypes to be decorated with PrototypeDecorator' do
+          expect(assigns(:prototype)).to be_decorated_with PrototypeDecorator
+        end
 
-      it 'redirects to root_path'  do
-        expect(response).to redirect_to root_path
-      end
+        it 'does not update prototype' do
+          prototype.reload
+          expect(prototype.name).not_to eq prototype_name
+        end
 
-      it 'shows flash message to show update prototype successfully' do
-        expect(flash[:notice]).to eq 'Prototype was successfully updated.'
+        it 'renders the :edit template' do
+          expect(flash[:alert]).to eq 'Prototype was not successfully updated.'
+        end
       end
     end
 

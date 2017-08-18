@@ -39,7 +39,7 @@ class PrototypesController < ApplicationController
       flash[:notice] = 'Prototype was successfully updated.'
       redirect_to root_path
     else
-      flash[:alert] = 'Prototype was not updated.'
+      flash[:alert] = 'Prototype was not successfully updated.'
       render :edit
     end
   end
