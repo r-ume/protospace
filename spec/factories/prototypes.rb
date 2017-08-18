@@ -36,6 +36,11 @@ FactoryGirl.define do
     end
 
     trait :with_sub_images do
+      # 参考url
+      # https://stackoverflow.com/questions/38573131/what-is-the-purpose-of-a-transient-do-block-in-factorygirl-factories
+      # http://qiita.com/ogomr/items/935da1072301ddc1aeaf
+      # Transient attributes allow you to pass in data that isn’t an attribute on the model.
+      # Now transient attribute is replaced with ignore attribute
       ignore do
         default_sub_images_num 3
       end
@@ -50,9 +55,6 @@ FactoryGirl.define do
     end
 
     trait :with_comments do
-      # 参考url
-      # https://stackoverflow.com/questions/38573131/what-is-the-purpose-of-a-transient-do-block-in-factorygirl-factories
-      # transient attributes allow you to pass in data that isn’t an attribute on the model.
       ignore do
         default_comments_num 5
       end
