@@ -22,7 +22,7 @@ describe PrototypesController, type: :controller do
         expect(assigns(:prototypes)).to be_decorated_with PaginatingDecorator
       end
 
-      it "assigns the requested prototype to 'normal'" do
+      it 'assigns the requested filter_type to normal' do
         expect(assigns(:filter_type)).to eq 'normal'
       end
 
@@ -36,7 +36,7 @@ describe PrototypesController, type: :controller do
         get :show, params: { id: prototype.id }
       end
 
-      it 'assigns the requested prototype to prototype' do
+      it 'assigns the requested prototype to @prototype' do
         expect(assigns(:prototype)).to eq prototype
       end
 
@@ -91,17 +91,15 @@ describe PrototypesController, type: :controller do
           post :create, params: invalid_params
         end
 
-        it 'creates a new prototype' do
-          expect {
-            post :create, params: invalid_params
-          }.not_to change(Prototype, :count)
+        it 'does not create a new prototype' do
+          expect { post :create, params: invalid_params }.not_to change(Prototype, :count)
         end
 
         it 'redirects to root path' do
           expect(response).to render_template :new
         end
 
-        it 'shows the successful flash message' do
+        it 'shows the unsuccessful flash message' do
           expect(flash[:alert]).to eq 'Prototype was not successfully created.'
         end
       end
@@ -148,7 +146,7 @@ describe PrototypesController, type: :controller do
           expect(response).to redirect_to root_path
         end
 
-        it 'shows flash message to show update prototype successfully' do
+        it 'shows flash message when updating prototype successfully' do
           expect(flash[:notice]).to eq 'Prototype was successfully updated.'
         end
       end
@@ -178,13 +176,10 @@ describe PrototypesController, type: :controller do
     end
 
     context 'DELETE #destroy' do
-      let(:delete_request) { delete :destroy, params }
+      let!(:delete_request) { delete :destroy, params }
       let(:params)  { { params: { id: prototype.id } } }
 
-      subject!(:prototype){ create(:prototype) }
-
       it 'assigns the requested prototype to @prototype' do
-        delete_request
         expect(assigns(:prototype)).to eq prototype
       end
 
@@ -193,7 +188,6 @@ describe PrototypesController, type: :controller do
       end
 
       it 'redirect to root_path' do
-        delete_request
         expect(response).to render_template root_path
       end
     end
