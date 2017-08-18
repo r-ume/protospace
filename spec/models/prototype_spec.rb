@@ -60,11 +60,11 @@ describe Prototype do
 
     context 'with likes' do
       let(:additional_likes_num) { 5 }
-      let!(:prototype) { create(:prototype, :with_comments, default_comments_num: additional_likes_num) }
+      let!(:prototype) { create(:prototype, :with_likes, default_likes_num: additional_likes_num) }
       it 'deletes the likes when a prototype gets deleted' do
         # total_likes_num = addtional_comments_num + default_comments_num = 5 + 5
         total_likes_num = additional_likes_num * 2
-        expect{ prototype.destroy }.to change{ Comment.count }.by(-1 * total_likes_num)
+        expect{ prototype.destroy }.to change{ Like.count }.by(-1 * total_likes_num)
       end
     end
   end

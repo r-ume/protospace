@@ -69,7 +69,7 @@ FactoryGirl.define do
     end
 
     trait :with_likes do
-      transient do
+      ignore do
         default_likes_num 5
       end
 
