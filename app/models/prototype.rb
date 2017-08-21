@@ -22,8 +22,8 @@ class Prototype < ApplicationRecord
   # association
   belongs_to :user
   has_many :prototype_images, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :comments,         dependent: :destroy
+  has_many :likes,            dependent: :destroy
 
   acts_as_taggable_on :tags
   

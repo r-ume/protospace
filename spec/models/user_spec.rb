@@ -29,7 +29,7 @@ include ActionDispatch::TestProcess
 describe User do
   let(:user) { build(:user) }
 
-  describe '#create' do
+  describe 'validation' do
     context 'when an user is filled with all valid attributes' do
       it 'is valid' do
         expect(user).to be_valid
