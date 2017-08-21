@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe UsersController do
-  let(:user)      { create(:user) }
-  let(:user_name) { Faker::Pokemon.name }
-  let(:params)    { { id: user.id, user: attributes_for(:user, name: user_name ) } }
+  let(:additional_prototype_num) { 3 }
+  let!(:user)                    { create(:user, :with_prototypes, default_prototypes_num: additional_prototype_num) }
+  let(:user_name)                { Faker::Pokemon.name }
+  let(:params)                   { { id: user.id, user: attributes_for(:user, name: user_name ) } }
 
   describe 'with user login' do
     before { login_user }
@@ -18,7 +19,7 @@ describe UsersController do
       end
 
       it 'assigns the num of prototypes associated with user to @num_of_current_user_prototypes' do
-        expect(assigns(:num_of_current_user_prototypes).size).to  be_a_kind_of(Integer)
+        expect(user.prototypes.size).to eq additional_prototype_num
       end
 
       it 'renders the :show templates' do
