@@ -39,7 +39,7 @@ class PrototypesController < ApplicationController
       flash[:notice] = 'Prototype was successfully updated.'
       redirect_to root_path
     else
-      flash[:alert] = 'Prototype was not updated.'
+      flash[:alert] = 'Prototype was not successfully updated.'
       render :edit
     end
   end
@@ -47,7 +47,8 @@ class PrototypesController < ApplicationController
   def destroy
     if @prototype.user == current_user
       @prototype.destroy
-      redirect_to root_path, notice: "Prototype was successfully updated"
+      flash[:notice] = 'Prototype was successfully deleted.'
+      redirect_to root_path
     else
       render :index, alert: "You cannot destroy the prototype"
     end
