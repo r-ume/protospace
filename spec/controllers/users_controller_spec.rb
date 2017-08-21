@@ -18,8 +18,7 @@ describe UsersController do
       end
 
       it 'assigns the num of prototypes associated with user to @num_of_current_user_prototypes' do
-        # なぜか30... 要相談
-        expect(:num_of_current_user_prototypes).to have(30).items
+        expect(assigns(:num_of_current_user_prototypes).size).to  be_a_kind_of(Integer)
       end
 
       it 'renders the :show templates' do
