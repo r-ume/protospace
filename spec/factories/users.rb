@@ -31,5 +31,15 @@ FactoryGirl.define do
     avatar     { fixture_file_upload(Rails.root.join('spec/fixtures/baymax.jpeg')) }
     email      { Faker::Internet.email }
     password   { Faker::Internet.password(6, 128, true, true) }
+
+    trait :with_prototypes do
+      ignore do
+        default_prototypes_num 3
+      end
+
+      after(:create) do |user, evaluator|
+        user.prototypes << create_list(:prototype, evaluator.default_prototypes_num)
+      end
+    end
   end
 end
