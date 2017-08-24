@@ -3,9 +3,7 @@
 ### Description
 A webplatform where users can display prototypes of new technology, ideas, and even objects that they would like to present. 
 
-## Design
-
-![prototype#index](Protospace/app/assets/images/forreadme/prototype#index.png)
+![protospace1](forreadme/prototype#index.png)
 
 ### Environment
   - Ruby version: 2.3.1
