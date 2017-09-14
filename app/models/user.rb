@@ -15,9 +15,9 @@ class User < ApplicationRecord
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  name                   :string(255)      default(""), not null
-#  profile                :text(65535)
+#  profile                :text(65535)      not null
 #  position               :string(255)      default(""), not null
-#  occupation             :text(65535)
+#  occupation             :text(65535)      not null
 #  avatar                 :string(255)      default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

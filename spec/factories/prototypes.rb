@@ -3,13 +3,13 @@
 # Table name: prototypes
 #
 #  id          :integer          not null, primary key
-#  name        :string(255)
-#  catchcopy   :text(65535)
-#  concept     :text(65535)
-#  likes_count :integer          default(0)
+#  name        :string(255)      default(""), not null
+#  user_id     :integer
+#  catchcopy   :text(65535)      not null
+#  concept     :text(65535)      not null
+#  likes_count :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :integer
 #
 
 FactoryGirl.define do
