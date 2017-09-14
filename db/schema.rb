@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20170711043501) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text", null: false
-    t.bigint "user_id"
-    t.bigint "prototype_id"
+    t.bigint "user_id", null: false
+    t.bigint "prototype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prototype_id"], name: "index_comments_on_prototype_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170711043501) do
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "prototype_id"
+    t.bigint "user_id", null: false
+    t.bigint "prototype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prototype_id"], name: "index_likes_on_prototype_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170711043501) do
 
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", default: "", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.text "catchcopy", null: false
     t.text "concept", null: false
     t.integer "likes_count", default: 0, null: false
