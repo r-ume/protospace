@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)      default(""), not null
-#  user_id     :integer
+#  user_id     :integer          not null
 #  catchcopy   :text(65535)      not null
 #  concept     :text(65535)      not null
 #  likes_count :integer          default(0), not null
