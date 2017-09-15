@@ -43,18 +43,22 @@ gem 'draper'
 gem 'carrierwave'
 gem 'fog'
 
-# DEBUG
-gem 'pry-rails'
-gem 'pry'
-gem 'pry-remote'
-gem 'pry-nav'
-
-# Annotation of SCHEMA
-gem 'annotate', require: false
+gem 'webpacker'
 
 group :development, :test do
+
+  # DEBUG
+  gem 'pry-rails'
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-nav'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  
+  # Annotation of SCHEMA
+  gem 'annotate', require: false
+
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
