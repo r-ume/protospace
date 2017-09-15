@@ -21,11 +21,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :last_sign_in_ip
 
        #Columns I add for protospace
-      t.string :name,               null: false, default: ""
-      t.text   :profile       
-      t.string :position,           null: false, default: ""
-      t.text   :occupation
-      t.string :avatar,             null: false, default: ""
+      t.string :name,               null: false, default: ''
+      t.text   :profile,            null: false
+      t.string :position,           null: false, default: ''
+      t.text   :occupation,         null: false
+      t.string :avatar,             null: false, default: ''
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.datetime :locked_at
 
 
-      t.timestamps null: false
+      t.timestamps                  null: false
     end
 
     add_index :users, :email,                unique: true

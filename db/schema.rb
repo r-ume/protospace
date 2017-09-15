@@ -10,44 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716131235) do
+ActiveRecord::Schema.define(version: 20170711043501) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text "text"
-    t.bigint "user_id"
-    t.bigint "prototype_id"
+    t.text "text", null: false
+    t.bigint "user_id", null: false
+    t.bigint "prototype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prototype_id"], name: "index_comments_on_prototype_id"
+    t.index ["user_id", "prototype_id"], name: "index_comments_on_user_id_and_prototype_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "prototype_id"
+    t.bigint "user_id", null: false
+    t.bigint "prototype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prototype_id"], name: "index_likes_on_prototype_id"
+    t.index ["user_id", "prototype_id"], name: "index_likes_on_user_id_and_prototype_id"
+    t.index ["user_id", "prototype_id"], name: "uk_likes_on_user_and_prototype", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "prototype_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "content"
-    t.bigint "prototype_id"
+    t.string "content", default: "", null: false
+    t.integer "status", null: false
+    t.bigint "prototype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
     t.index ["prototype_id"], name: "index_prototype_images_on_prototype_id"
   end
 
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.text "catchcopy"
-    t.text "concept"
-    t.integer "likes_count", default: 0
+    t.string "name", default: "", null: false
+    t.bigint "user_id", null: false
+    t.text "catchcopy", null: false
+    t.text "concept", null: false
+    t.integer "likes_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["user_id"], name: "index_prototypes_on_user_id"
   end
 
@@ -88,9 +91,9 @@ ActiveRecord::Schema.define(version: 20170716131235) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name", default: "", null: false
-    t.text "profile"
+    t.text "profile", null: false
     t.string "position", default: "", null: false
-    t.text "occupation"
+    t.text "occupation", null: false
     t.string "avatar", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170716131235) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "prototypes"
+  add_foreign_key "comments", "users"
   add_foreign_key "prototype_images", "prototypes"
-  add_foreign_key "prototypes", "users"
 end
