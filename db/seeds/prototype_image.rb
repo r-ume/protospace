@@ -13,14 +13,17 @@
 DUMMY_REPEAT_NUMS = 20
 RECORD_NAME = 'prototype_images'
 
+def seed_image(file_name)
+  File.open(File.join(Rails.root, "/spec/fixtures/#{file_name}"))
+end
+
 1.upto(DUMMY_REPEAT_NUMS) do |num|
   begin
     prototype_image = PrototypeImage.new(
-      content:      File.open(File.join(Rails.root, "spec/fixtures/baymax.jpeg")),
+      content:      seed_image('baymax.jpeg'),
       status:       Faker::Number.between(0, 1),
       prototype_id: Prototype.pluck(:id).sample
     )
-    binding.pry
     prototype_image.save!
 
      if num == DUMMY_REPEAT_NUMS
