@@ -26,7 +26,7 @@ end
     )
     prototype_image.save!
 
-     if num == DUMMY_REPEAT_NUMS
+    if num == DUMMY_REPEAT_NUMS
       p "#{DUMMY_REPEAT_NUMS} records of #{RECORD_NAME} inserted."
     end 
   rescue => error

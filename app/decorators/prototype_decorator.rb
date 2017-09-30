@@ -7,7 +7,8 @@ class PrototypeDecorator < ApplicationDecorator
   end
 
   def main_image
-    object.prototype_images.main.first.content
+    main_images = object.prototype_images.main
+    main_images.present? ? main_images.first.content : 'noimage-big.png'
   end
 
   def sub_images
