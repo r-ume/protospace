@@ -1,6 +1,9 @@
 require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
+require 'dotenv'
+
+Dotenv.overload
 
 CarrierWave.configure do |config|
   config.fog_credentials = {
@@ -16,10 +19,10 @@ CarrierWave.configure do |config|
 
   case Rails.env
     when 'production'
-      config.fog_directory = 'r-ume-protospace',
+      config.fog_directory = 'r-ume-protospace'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/r-ume-protospace'
     when 'development'
-      config.fog_directory = 'r-ume-protospace',
+      config.fog_directory = 'r-ume-protospace'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/r-ume-protospace'
     when 'test'
       config.storage = :file
