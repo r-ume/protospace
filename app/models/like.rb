@@ -10,7 +10,13 @@
 #
 
 class Like < ApplicationRecord
-  # association
+
+  # Association
   belongs_to :user
   belongs_to :prototype, counter_cache: :likes_count
+
+  # Validation
+  validates :user_id, uniqueness: { scope: :prototype_id }
+  validates :user_id, :prototype_id, presence: true, numericality: true
+
 end

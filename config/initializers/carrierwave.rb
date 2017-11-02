@@ -18,14 +18,14 @@ CarrierWave.configure do |config|
   config.ignore_download_errors = false
 
   case Rails.env
-    when 'production'
-      config.fog_directory = 'r-ume-protospace'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/r-ume-protospace'
-    when 'development'
-      config.fog_directory = 'r-ume-protospace'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/r-ume-protospace'
-    when 'test'
-      config.storage = :file
+  when 'production'
+    config.fog_directory = 'r-ume-protospace'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/r-ume-protospace'
+  when 'development'
+    config.fog_directory = 'r-ume-protospace'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/r-ume-protospace'
+  when 'test'
+    config.storage = :file
   end
 end
 
