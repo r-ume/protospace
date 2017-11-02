@@ -11,15 +11,25 @@
 #
 
 class PrototypeImage < ApplicationRecord
-  # association
+
+  # Enum
+  enum status: { main: 1, sub: 2 }
+
+  # Association
   belongs_to :prototype
 
-  # enum
-  enum status: %w(main sub)
+  # Validation
+  validates :content, :status, :prototype_id,  presence: true
+  validates :prototype_id,                     numericality: true
+  validate  :only_one_main_image_per_prototype
 
-  # carreierwave
+  # Carreierwave
   mount_uploader :content, PrototypeImageUploader
 
-  # validation
-  validates :content, :status, presence: true
+  # Custom Validation
+  def only_one_main_image_per_prototype
+    main_image = self.prototype.prototype_images.main
+    errors.add(:status, "Main Image for this Prototype has already exists.") if main_image.present?
+  end
+
 end

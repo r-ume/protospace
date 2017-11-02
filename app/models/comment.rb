@@ -11,7 +11,13 @@
 #
 
 class Comment < ApplicationRecord
-  # association
+
+  # Association
   belongs_to :user
   belongs_to :prototype
+
+  # Validation
+  validates :text, :user_id, :prototype_id, presence: true
+  validates :user_id, :prototype_id, numericality: true
+
 end

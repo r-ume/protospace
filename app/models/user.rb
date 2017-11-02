@@ -1,4 +1,3 @@
-class User < ApplicationRecord
 # == Schema Information
 #
 # Table name: users
@@ -23,20 +22,26 @@ class User < ApplicationRecord
 #  updated_at             :datetime         not null
 #
 
+class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # validation
-  validates :name,  presence: true
-  validates :email, uniqueness: true
+  # Validation
+  validates :name, :email, :password,
+            :profile, :position,
+            :occupation, :avatar,     presence: true
+  validates :name, :email,            uniqueness: true
+  validates :password,                length: { in: 6..128 }
 
-  # association
+  # Association
   has_many :prototypes
   has_many :comments
   has_many :likes, dependent: :destroy
 
-  # carrierwave
+  # Carrierwave
   mount_uploader :avatar, AvatarUploader
+
 end
