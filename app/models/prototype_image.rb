@@ -19,8 +19,7 @@ class PrototypeImage < ApplicationRecord
   belongs_to :prototype
 
   # Validation
-  validates :content, :status, :prototype_id,  presence: true
-  validates :prototype_id,                     numericality: true
+  validates :content, :status, presence: true
   validate  :only_one_main_image_per_prototype
 
   # Carreierwave
